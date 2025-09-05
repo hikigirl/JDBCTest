@@ -17,8 +17,55 @@ public class Ex04_Statement {
 		//m2();
 		//m3();
 		//m4();
-		m5();
+		//m5();
+		m6();
 	}
+
+	private static void m6() {
+		//사용자가 입력받은 데이터를 db와 연동하기
+		Scanner scan = new Scanner(System.in);
+		
+		//서로 다른 언어(환경)에서는 자료형이 호환되지 않는다.
+		System.out.println("정보를 입력하세요.");
+		System.out.print("이름: ");
+		String name = scan.nextLine(); //varchar2 != String
+		
+		System.out.print("나이: ");
+		String age = scan.nextLine(); //number != int
+		
+		System.out.print("성별: ");
+		String gender = scan.nextLine();
+		
+		System.out.print("전화번호: ");
+		String tel = scan.nextLine();
+		
+		System.out.print("주소: ");
+		String address = scan.nextLine();
+		
+		String sql = String.format("insert into tblAddress(seq, name, age, gender, tel, address, regdate) values(seqAddress.nextVal, '%s', %s, '%s', '%s', '%s', default)", name, age, gender, tel, address);
+		System.out.println(sql);
+		
+		DBUtil util = new DBUtil();
+		Connection conn = null;
+		Statement stat = null;
+		
+		try {
+			conn = util.open();
+			stat = conn.createStatement();
+			
+			int result = stat.executeUpdate(sql);
+			System.out.println(result);
+			
+			stat.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			util.close();
+		}
+		
+		
+	}
+
 	private static void m5() {
 		//반환값이 없는 쿼리.. DML(insert, update, delete), DDL(create, drop, alter), DCL(commit,rollback)
 		DBUtil util = new DBUtil();

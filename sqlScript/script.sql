@@ -29,10 +29,21 @@ create sequence seqAddress;
 -- 2. JDBC 작업 용이
 
 --CRUD
-select * from tblAddress;
-select * from tblAddress2;
+SELECT * FROM tblAddress;
+
 
 insert into tblAddress(seq, name, age, gender, tel, address, regdate) values(seqAddress.nextVal, '홍길동', 20, 'm', '010-1234-5678', '서울시 강남구 대치동', default);
     
-update tblAddress set age = age + 1 where seq = 1;
+UPDATE tblAddress SET age = age + 1 WHERE seq = 1;
 
+--DELETE FROM tblAddress WHERE seq = 21;
+--DELETE FROM tblAddress WHERE seq = 22;
+--DELETE FROM tblAddress WHERE seq = 23;
+
+SELECT count(*) AS count FROM tblAddress;
+
+SELECT name FROM tblAddress WHERE seq = 24;
+
+SELECT * FROM TBLADDRESS WHERE seq = 24;
+
+SELECT name FROM TBLADDRESS;
